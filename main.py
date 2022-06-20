@@ -38,17 +38,17 @@ def recvMessage(client, userdata, message):
             ledData['led'] = jsonobj['params']['led']
             if isMicrobitConnected:
                 if(ledData['params']['led'] == True):
-                    serial.write(("!0#").encode())
+                    ser.write(("!0#").encode())
                 elif(ledData['params']['led'] == False):
-                    serial.write(("!1#").encode())
+                    ser.write(("!1#").encode())
             client.publish('v1/devices/me/attributes', json.dumps(ledData), 1)
         if jsonobj['method'] == "setFan":
             fanData['fan'] = jsonobj['params']['fan']
             if isMicrobitConnected:
                 if(fanData['params']['fan'] == True):
-                    serial.write(("!2#").encode())
+                    ser.write(("!2#").encode())
                 elif(fanData['params']['fan'] == False):
-                    serial.write(("!3#").encode())
+                    ser.write(("!3#").encode())
             client.publish('v1/devices/me/attributes', json.dumps(fanData), 1)
     except:
         pass
